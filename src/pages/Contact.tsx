@@ -2,11 +2,12 @@
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, MessageSquare } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 
 const Contact = () => {
@@ -14,27 +15,62 @@ const Contact = () => {
     name: '',
     email: '',
     phone: '',
+    service: '',
     subject: '',
-    message: ''
+    message: '',
+    urgency: ''
   });
 
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Contact form submitted:', formData);
     toast({
       title: "Message sent successfully!",
       description: "We'll get back to you within 24 hours.",
     });
-    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      service: '',
+      subject: '',
+      message: '',
+      urgency: ''
+    });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
+  const handleChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
   };
+
+  const contactInfo = [
+    {
+      icon: MapPin,
+      title: 'Our Location',
+      details: ['Central Division A', 'Wakiso District', 'Uganda'],
+      action: 'Get Directions'
+    },
+    {
+      icon: Phone,
+      title: 'Phone Number',
+      details: ['+256 701492351'],
+      action: 'Call Now'
+    },
+    {
+      icon: Mail,
+      title: 'Email Address',
+      details: ['info@smkecoenvirosolutions.com'],
+      action: 'Send Email'
+    },
+    {
+      icon: Clock,
+      title: 'Business Hours',
+      details: ['Mon - Fri: 8:00 AM - 6:00 PM', 'Sat: 9:00 AM - 2:00 PM', 'Sun: Emergency Only'],
+      action: 'Emergency Contact'
+    }
+  ];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -45,169 +81,183 @@ const Contact = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="font-poppins text-4xl md:text-5xl font-bold mb-6">
-                Contact Us
+                Get In Touch With Us
               </h1>
               <p className="text-xl leading-relaxed">
-                Ready to start your environmental project? Get in touch with our expert team today.
+                Ready to start your environmental project? Contact our expert team for professional consultation and customized solutions.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Contact Form & Info */}
+        {/* Contact Information */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+              {contactInfo.map((info, index) => (
+                <Card key={index} className="text-center hover:shadow-lg transition-shadow">
+                  <CardContent className="p-8">
+                    <div className="w-16 h-16 bg-earth-green rounded-full flex items-center justify-center mx-auto mb-6">
+                      <info.icon className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="font-poppins text-xl font-semibold text-gray-900 mb-4">
+                      {info.title}
+                    </h3>
+                    <div className="space-y-1 mb-4">
+                      {info.details.map((detail, detailIndex) => (
+                        <p key={detailIndex} className="text-gray-600">
+                          {detail}
+                        </p>
+                      ))}
+                    </div>
+                    <Button variant="outline" size="sm" className="text-earth-green border-earth-green hover:bg-earth-green hover:text-white">
+                      {info.action}
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Form & Map */}
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Contact Form */}
-              <Card className="bg-white shadow-lg">
-                <CardHeader>
-                  <CardTitle className="text-2xl font-bold text-gray-900">
-                    Send us a Message
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                          Full Name *
-                        </label>
-                        <Input
-                          id="name"
-                          name="name"
-                          type="text"
-                          value={formData.name}
-                          onChange={handleChange}
-                          required
-                          className="w-full"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                          Email Address *
-                        </label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                          className="w-full"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                          Phone Number
-                        </label>
-                        <Input
-                          id="phone"
-                          name="phone"
-                          type="tel"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className="w-full"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                          Subject *
-                        </label>
-                        <Input
-                          id="subject"
-                          name="subject"
-                          type="text"
-                          value={formData.subject}
-                          onChange={handleChange}
-                          required
-                          className="w-full"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                        Message *
-                      </label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        rows={5}
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        className="w-full"
-                        placeholder="Tell us about your project requirements..."
-                      />
-                    </div>
-
-                    <Button 
-                      type="submit" 
-                      className="w-full bg-earth-green hover:bg-forest-green"
-                      size="lg"
-                    >
-                      <Send className="mr-2 h-5 w-5" />
-                      Send Message
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-
-              {/* Contact Information */}
-              <div className="space-y-8">
-                {/* Contact Details */}
-                <Card className="bg-white shadow-lg">
+              <div>
+                <Card>
                   <CardHeader>
-                    <CardTitle className="text-2xl font-bold text-gray-900">
-                      Get in Touch
+                    <CardTitle className="flex items-center text-2xl">
+                      <MessageSquare className="mr-3 h-6 w-6 text-earth-green" />
+                      Send Us a Message
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-earth-green rounded-lg flex items-center justify-center">
-                        <Phone className="h-6 w-6 text-white" />
+                  <CardContent>
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Full Name *
+                          </label>
+                          <Input
+                            required
+                            value={formData.name}
+                            onChange={(e) => handleChange('name', e.target.value)}
+                            placeholder="Your full name"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Email Address *
+                          </label>
+                          <Input
+                            type="email"
+                            required
+                            value={formData.email}
+                            onChange={(e) => handleChange('email', e.target.value)}
+                            placeholder="your.email@example.com"
+                          />
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900">Phone</h3>
-                        <p className="text-gray-600">+256 701492351</p>
-                        <p className="text-sm text-gray-500">Available 24/7 for emergencies</p>
-                      </div>
-                    </div>
 
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-earth-green rounded-lg flex items-center justify-center">
-                        <Mail className="h-6 w-6 text-white" />
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Phone Number
+                          </label>
+                          <Input
+                            value={formData.phone}
+                            onChange={(e) => handleChange('phone', e.target.value)}
+                            placeholder="+256 XXX XXXXXX"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Service of Interest
+                          </label>
+                          <Select value={formData.service} onValueChange={(value) => handleChange('service', value)}>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select a service" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="eia">Environmental Impact Assessment</SelectItem>
+                              <SelectItem value="climate">Climate Risk Assessment</SelectItem>
+                              <SelectItem value="weather">Weather Monitoring</SelectItem>
+                              <SelectItem value="audit">Environmental Auditing</SelectItem>
+                              <SelectItem value="sustainability">Sustainability Consulting</SelectItem>
+                              <SelectItem value="water">Water Resources Management</SelectItem>
+                              <SelectItem value="other">Other</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900">Email</h3>
-                        <p className="text-gray-600">info@smkecoenvirosolutions.com</p>
-                        <p className="text-sm text-gray-500">We respond within 24 hours</p>
-                      </div>
-                    </div>
 
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-earth-green rounded-lg flex items-center justify-center">
-                        <MapPin className="h-6 w-6 text-white" />
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Subject *
+                          </label>
+                          <Input
+                            required
+                            value={formData.subject}
+                            onChange={(e) => handleChange('subject', e.target.value)}
+                            placeholder="Brief subject of your inquiry"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Urgency Level
+                          </label>
+                          <Select value={formData.urgency} onValueChange={(value) => handleChange('urgency', value)}>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select urgency" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="low">Low - General Inquiry</SelectItem>
+                              <SelectItem value="medium">Medium - Project Discussion</SelectItem>
+                              <SelectItem value="high">High - Urgent Consultation</SelectItem>
+                              <SelectItem value="emergency">Emergency - Immediate Response</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900">Office Location</h3>
-                        <p className="text-gray-600">Central Division A<br />Wakiso District, Uganda</p>
-                        <p className="text-sm text-gray-500">Visit by appointment</p>
-                      </div>
-                    </div>
 
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-earth-green rounded-lg flex items-center justify-center">
-                        <Clock className="h-6 w-6 text-white" />
-                      </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900">Business Hours</h3>
-                        <p className="text-gray-600">Monday - Friday: 8:00 AM - 6:00 PM</p>
-                        <p className="text-gray-600">Saturday: 9:00 AM - 4:00 PM</p>
-                        <p className="text-sm text-gray-500">Sunday: Emergency calls only</p>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Message *
+                        </label>
+                        <Textarea
+                          required
+                          rows={6}
+                          value={formData.message}
+                          onChange={(e) => handleChange('message', e.target.value)}
+                          placeholder="Please describe your project, requirements, or questions in detail..."
+                        />
+                      </div>
+
+                      <Button type="submit" className="w-full bg-earth-green hover:bg-forest-green">
+                        <Send className="mr-2 h-5 w-5" />
+                        Send Message
+                      </Button>
+                    </form>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Map and Additional Info */}
+              <div className="space-y-8">
+                {/* Map Placeholder */}
+                <Card>
+                  <CardContent className="p-8">
+                    <h3 className="font-poppins text-xl font-semibold text-gray-900 mb-4">
+                      Our Location
+                    </h3>
+                    <div className="h-64 bg-gray-200 rounded-lg flex items-center justify-center">
+                      <div className="text-center">
+                        <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-2" />
+                        <p className="text-gray-500">Interactive Map</p>
+                        <p className="text-sm text-gray-400">Central Division A, Wakiso District, Uganda</p>
                       </div>
                     </div>
                   </CardContent>
@@ -215,36 +265,41 @@ const Contact = () => {
 
                 {/* Emergency Contact */}
                 <Card className="bg-red-50 border-red-200">
-                  <CardContent className="p-6">
-                    <h3 className="font-semibold text-red-800 mb-2">Emergency Contact</h3>
-                    <p className="text-red-700 mb-2">For urgent environmental emergencies:</p>
-                    <p className="font-bold text-red-800">+256 701492351</p>
-                    <p className="text-sm text-red-600 mt-2">Available 24/7 for critical situations</p>
+                  <CardContent className="p-8">
+                    <h3 className="font-poppins text-xl font-semibold text-red-800 mb-4">
+                      Emergency Environmental Response
+                    </h3>
+                    <p className="text-red-700 mb-4">
+                      For environmental emergencies requiring immediate attention, contact our 24/7 emergency response team.
+                    </p>
+                    <Button className="bg-red-600 hover:bg-red-700 w-full">
+                      Call Emergency Line
+                    </Button>
                   </CardContent>
                 </Card>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        {/* Map Section */}
-        <section className="py-20 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="font-poppins text-3xl font-bold text-gray-900 mb-4">
-                Our Location
-              </h2>
-              <p className="text-gray-600">
-                Visit our office in Wakiso District for in-person consultations
-              </p>
-            </div>
-            
-            {/* Placeholder for map */}
-            <div className="bg-gray-200 h-96 rounded-lg flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600">Interactive map will be loaded here</p>
-                <p className="text-sm text-gray-500">Central Division A, Wakiso District, Uganda</p>
+                {/* Office Hours */}
+                <Card>
+                  <CardContent className="p-8">
+                    <h3 className="font-poppins text-xl font-semibold text-gray-900 mb-4">
+                      Office Hours
+                    </h3>
+                    <div className="space-y-2">
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Monday - Friday</span>
+                        <span className="font-medium">8:00 AM - 6:00 PM</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Saturday</span>
+                        <span className="font-medium">9:00 AM - 2:00 PM</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Sunday</span>
+                        <span className="font-medium">Emergency Only</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </div>

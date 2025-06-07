@@ -2,58 +2,98 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Mail, Linkedin, Award } from 'lucide-react';
+import { Mail, Phone, Linkedin, Award, BookOpen, Users } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 const Team = () => {
   const teamMembers = [
     {
-      name: 'Dr. Samuel Mukasa Kayondo',
-      position: 'Chief Executive Officer & Lead Environmental Consultant',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face',
-      credentials: ['PhD Environmental Science', 'Certified EIA Practitioner', '15+ Years Experience'],
-      bio: 'Dr. Kayondo leads our team with extensive experience in environmental management and climate science. He has overseen over 300 successful EIA projects across East Africa.',
-      email: 'samuel@smkecoenvirosolutions.com'
+      name: 'Dr. Samuel Kayondo',
+      position: 'Chief Executive Officer & Lead Environmental Scientist',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
+      qualifications: ['PhD Environmental Science', 'MSc Climate Change', 'ISO 14001 Lead Auditor'],
+      experience: '15+ years',
+      specialization: 'Climate Risk Assessment, EIA',
+      achievements: ['Led 200+ EIA projects', 'Climate adaptation expert', 'Published researcher'],
+      email: 'samuel@smkecoenvirosolutions.com',
+      phone: '+256 701492351'
     },
     {
       name: 'Eng. Margaret Nalwanga',
-      position: 'Senior Environmental Engineer',
-      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face',
-      credentials: ['MSc Environmental Engineering', 'Professional Engineer (PE)', 'NEMA Certified'],
-      bio: 'Margaret specializes in water resources management and environmental engineering solutions. She brings 12 years of experience in sustainable development projects.',
-      email: 'margaret@smkecoenvirosolutions.com'
+      position: 'Technical Director & Senior Environmental Engineer',
+      image: 'https://images.unsplash.com/photo-1494790108755-2616c4e2fedf?w=400&h=400&fit=crop&crop=face',
+      qualifications: ['BEng Environmental Engineering', 'MSc Water Resources', 'Professional Engineer (PE)'],
+      experience: '12+ years',
+      specialization: 'Water Resources, Environmental Engineering',
+      achievements: ['Water treatment specialist', 'Infrastructure projects expert', 'Regulatory compliance leader'],
+      email: 'margaret@smkecoenvirosolutions.com',
+      phone: '+256 701492352'
     },
     {
       name: 'Dr. James Ssemwanga',
-      position: 'Chief Meteorologist',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face',
-      credentials: ['PhD Atmospheric Sciences', 'WMO Certified', 'Climate Risk Specialist'],
-      bio: 'Dr. Ssemwanga leads our meteorological services with expertise in climate modeling and weather forecasting. He has contributed to several international climate research projects.',
-      email: 'james@smkecoenvirosolutions.com'
+      position: 'Chief Meteorologist & Weather Systems Specialist',
+      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face',
+      qualifications: ['PhD Meteorology', 'MSc Atmospheric Sciences', 'WMO Certified Meteorologist'],
+      experience: '18+ years',
+      specialization: 'Weather Forecasting, Climate Modeling',
+      achievements: ['Weather monitoring expert', 'Agricultural meteorology specialist', 'Technology implementation leader'],
+      email: 'james@smkecoenvirosolutions.com',
+      phone: '+256 701492353'
     },
     {
       name: 'Grace Nakato',
-      position: 'Environmental Policy Analyst',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face',
-      credentials: ['MSc Environmental Policy', 'Legal Compliance Expert', 'UNEP Consultant'],
-      bio: 'Grace ensures all our projects meet regulatory requirements and helps clients navigate complex environmental policies. She has 10 years of experience in environmental law.',
-      email: 'grace@smkecoenvirosolutions.com'
+      position: 'Senior Environmental Consultant & Sustainability Specialist',
+      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face',
+      qualifications: ['MSc Environmental Management', 'BSc Biology', 'Certified Sustainability Professional'],
+      experience: '10+ years',
+      specialization: 'Sustainability Consulting, Environmental Auditing',
+      achievements: ['Green certification expert', 'Corporate sustainability advisor', 'ESG reporting specialist'],
+      email: 'grace@smkecoenvirosolutions.com',
+      phone: '+256 701492354'
     },
     {
       name: 'David Musoke',
-      position: 'GIS & Remote Sensing Specialist',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face',
-      credentials: ['MSc Geoinformatics', 'ESRI Certified', 'Remote Sensing Expert'],
-      bio: 'David manages our spatial analysis and mapping services using cutting-edge GIS technology. He specializes in environmental monitoring and change detection.',
-      email: 'david@smkecoenvirosolutions.com'
+      position: 'Wildlife Conservation Specialist & Biodiversity Expert',
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face',
+      qualifications: ['MSc Wildlife Conservation', 'BSc Ecology', 'Certified Conservation Biologist'],
+      experience: '8+ years',
+      specialization: 'Biodiversity Assessment, Conservation Planning',
+      achievements: ['Protected area management', 'Species conservation expert', 'Community engagement specialist'],
+      email: 'david@smkecoenvirosolutions.com',
+      phone: '+256 701492355'
     },
     {
       name: 'Sarah Namutebi',
-      position: 'Project Manager & Client Relations',
-      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&h=300&fit=crop&crop=face',
-      credentials: ['MBA Project Management', 'PMP Certified', 'Client Success Specialist'],
-      bio: 'Sarah ensures smooth project delivery and maintains strong client relationships. She coordinates our multidisciplinary teams to deliver projects on time and within budget.',
-      email: 'sarah@smkecoenvirosolutions.com'
+      position: 'Environmental Compliance Officer & Regulatory Specialist',
+      image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop&crop=face',
+      qualifications: ['LLM Environmental Law', 'BSc Environmental Science', 'Certified Compliance Officer'],
+      experience: '7+ years',
+      specialization: 'Environmental Law, Regulatory Compliance',
+      achievements: ['Compliance management expert', 'Legal framework specialist', 'Permit processing leader'],
+      email: 'sarah@smkecoenvirosolutions.com',
+      phone: '+256 701492356'
+    }
+  ];
+
+  const departments = [
+    {
+      icon: Award,
+      name: 'Environmental Assessment',
+      description: 'Leading EIA and environmental impact studies',
+      teamSize: '8 specialists'
+    },
+    {
+      icon: BookOpen,
+      name: 'Research & Development',
+      description: 'Innovation in environmental solutions',
+      teamSize: '5 researchers'
+    },
+    {
+      icon: Users,
+      name: 'Client Services',
+      description: 'Dedicated support and consultation',
+      teamSize: '6 consultants'
     }
   ];
 
@@ -66,12 +106,46 @@ const Team = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="font-poppins text-4xl md:text-5xl font-bold mb-6">
-                Our Expert Team
+                Meet Our Expert Team
               </h1>
               <p className="text-xl leading-relaxed">
-                Meet the professionals who make SMK EcoEnviro Solutions a leader in environmental consultancy. 
-                Our diverse team brings together decades of experience and expertise.
+                Dedicated professionals with decades of combined experience in environmental science, meteorology, and sustainability consulting
               </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Team Overview */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="font-poppins text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Our Departments
+              </h2>
+              <p className="text-xl text-gray-600">
+                Specialized teams working together for comprehensive environmental solutions
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              {departments.map((dept, index) => (
+                <Card key={index} className="text-center">
+                  <CardContent className="p-8">
+                    <div className="w-16 h-16 bg-earth-green rounded-full flex items-center justify-center mx-auto mb-6">
+                      <dept.icon className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="font-poppins text-xl font-semibold text-gray-900 mb-4">
+                      {dept.name}
+                    </h3>
+                    <p className="text-gray-600 mb-4">
+                      {dept.description}
+                    </p>
+                    <p className="text-earth-green font-medium">
+                      {dept.teamSize}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </section>
@@ -79,60 +153,74 @@ const Team = () => {
         {/* Team Members */}
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="font-poppins text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Leadership Team
+              </h2>
+              <p className="text-xl text-gray-600">
+                Meet the experts leading our environmental consultancy services
+              </p>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {teamMembers.map((member, index) => (
-                <Card key={index} className="bg-white hover:shadow-xl transition-all duration-300 h-full">
-                  <CardContent className="p-0">
-                    {/* Photo */}
-                    <div className="relative">
-                      <div 
-                        className="w-full h-64 bg-cover bg-center"
-                        style={{ backgroundImage: `url(${member.image})` }}
+                <Card key={index} className="hover:shadow-xl transition-shadow h-full">
+                  <CardContent className="p-8">
+                    <div className="text-center mb-6">
+                      <img 
+                        src={member.image} 
+                        alt={member.name}
+                        className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      <div className="absolute bottom-4 left-4 text-white">
-                        <h3 className="font-poppins text-xl font-bold">{member.name}</h3>
-                        <p className="text-green-200">{member.position}</p>
-                      </div>
+                      <h3 className="font-poppins text-xl font-semibold text-gray-900 mb-2">
+                        {member.name}
+                      </h3>
+                      <p className="text-earth-green font-medium mb-4">
+                        {member.position}
+                      </p>
                     </div>
 
-                    {/* Content */}
-                    <div className="p-6">
-                      {/* Credentials */}
-                      <div className="mb-4">
-                        <div className="flex items-center mb-2">
-                          <Award className="h-4 w-4 text-earth-green mr-2" />
-                          <span className="font-semibold text-sm">Credentials</span>
-                        </div>
-                        <ul className="space-y-1">
-                          {member.credentials.map((credential, credIndex) => (
-                            <li key={credIndex} className="text-sm text-gray-600 flex items-center">
-                              <div className="w-2 h-2 bg-earth-green rounded-full mr-2" />
-                              {credential}
-                            </li>
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">Qualifications</h4>
+                        <ul className="text-sm text-gray-600 space-y-1">
+                          {member.qualifications.map((qual, qualIndex) => (
+                            <li key={qualIndex}>• {qual}</li>
                           ))}
                         </ul>
                       </div>
 
-                      {/* Bio */}
-                      <p className="text-gray-700 text-sm mb-4 leading-relaxed">
-                        {member.bio}
-                      </p>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <h4 className="font-semibold text-gray-900 mb-1">Experience</h4>
+                          <p className="text-sm text-gray-600">{member.experience}</p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-gray-900 mb-1">Specialization</h4>
+                          <p className="text-sm text-gray-600">{member.specialization}</p>
+                        </div>
+                      </div>
 
-                      {/* Contact */}
-                      <div className="flex items-center space-x-3 pt-4 border-t">
-                        <a 
-                          href={`mailto:${member.email}`}
-                          className="w-8 h-8 bg-earth-green rounded-full flex items-center justify-center text-white hover:bg-forest-green transition-colors"
-                        >
-                          <Mail className="h-4 w-4" />
-                        </a>
-                        <a 
-                          href="#"
-                          className="w-8 h-8 bg-earth-green rounded-full flex items-center justify-center text-white hover:bg-forest-green transition-colors"
-                        >
-                          <Linkedin className="h-4 w-4" />
-                        </a>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">Key Achievements</h4>
+                        <ul className="text-sm text-gray-600 space-y-1">
+                          {member.achievements.map((achievement, achIndex) => (
+                            <li key={achIndex}>• {achievement}</li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div className="pt-4 border-t space-y-2">
+                        <div className="flex items-center justify-between">
+                          <Button variant="outline" size="sm" className="flex-1 mr-2">
+                            <Mail className="h-4 w-4 mr-1" />
+                            Email
+                          </Button>
+                          <Button variant="outline" size="sm" className="flex-1 ml-2">
+                            <Linkedin className="h-4 w-4 mr-1" />
+                            LinkedIn
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </CardContent>
@@ -142,39 +230,53 @@ const Team = () => {
           </div>
         </section>
 
-        {/* Join Our Team */}
+        {/* Certifications */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="font-poppins text-3xl font-bold mb-6">Join Our Team</h2>
-              <p className="text-xl text-gray-600 mb-8">
-                We're always looking for talented professionals to join our growing team. 
-                If you're passionate about environmental sustainability and want to make a difference, 
-                we'd love to hear from you.
+            <div className="text-center mb-16">
+              <h2 className="font-poppins text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Team Certifications & Credentials
+              </h2>
+              <p className="text-xl text-gray-600">
+                Our team holds professional certifications from leading environmental and meteorological organizations
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                <div className="text-center">
-                  <div className="text-4xl mb-4">🌱</div>
-                  <h3 className="font-semibold mb-2">Growth Opportunities</h3>
-                  <p className="text-gray-600 text-sm">Professional development and career advancement</p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {[
+                'ISO 14001 Lead Auditors',
+                'Professional Engineers (PE)',
+                'WMO Certified Meteorologists',
+                'Certified Sustainability Professionals',
+                'Environmental Impact Assessment Specialists',
+                'Wildlife Conservation Biologists',
+                'Environmental Law Specialists',
+                'Climate Change Adaptation Experts'
+              ].map((cert, index) => (
+                <div key={index} className="text-center">
+                  <div className="w-16 h-16 bg-earth-green/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Award className="h-8 w-8 text-earth-green" />
+                  </div>
+                  <p className="text-sm font-medium text-gray-700">{cert}</p>
                 </div>
-                <div className="text-center">
-                  <div className="text-4xl mb-4">🤝</div>
-                  <h3 className="font-semibold mb-2">Collaborative Culture</h3>
-                  <p className="text-gray-600 text-sm">Work with passionate environmental professionals</p>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl mb-4">🎯</div>
-                  <h3 className="font-semibold mb-2">Meaningful Impact</h3>
-                  <p className="text-gray-600 text-sm">Contribute to environmental sustainability</p>
-                </div>
-              </div>
-              <a 
-                href="/careers" 
-                className="inline-flex items-center px-6 py-3 bg-earth-green text-white rounded-lg hover:bg-forest-green transition-colors"
-              >
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Join Our Team CTA */}
+        <section className="py-20 bg-earth-green text-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center">
+              <h2 className="font-poppins text-3xl md:text-4xl font-bold mb-6">
+                Join Our Growing Team
+              </h2>
+              <p className="text-xl mb-8 max-w-2xl mx-auto">
+                We're always looking for talented environmental professionals to join our mission of creating sustainable solutions for Uganda and East Africa.
+              </p>
+              <Button size="lg" className="bg-white text-earth-green hover:bg-gray-100">
                 View Open Positions
-              </a>
+              </Button>
             </div>
           </div>
         </section>
