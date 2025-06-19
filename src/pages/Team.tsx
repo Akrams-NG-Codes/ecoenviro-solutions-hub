@@ -138,17 +138,11 @@ const Team = () => {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                     <div className="relative">
                       <div className="aspect-square bg-gray-100 flex items-center justify-center">
-                        <div className="text-center p-8">
-                          <div className="w-32 h-32 bg-earth-green/20 rounded-full mx-auto mb-4 flex items-center justify-center">
-                            <span className="text-4xl">📸</span>
-                          </div>
-                          <p className="text-gray-600 text-sm">
-                            CEO Photo Placeholder
-                          </p>
-                          <p className="text-gray-500 text-xs mt-2">
-                            Replace with Mollen Kenyena's photo
-                          </p>
-                        </div>
+                        <img
+                          src={teamMembers[0].image}
+                          alt={teamMembers[0].name}
+                          className="w-32 h-32 rounded-full object-cover mx-auto mb-4"
+                        />
                       </div>
                     </div>
                     <div className="p-8 lg:p-12">
