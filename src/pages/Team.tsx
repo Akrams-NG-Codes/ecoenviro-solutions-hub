@@ -10,7 +10,7 @@ const Team = () => {
     {
       name: 'Mollen Kenyena',
       position: 'Chief Executive Officer & Senior Meteorologist',
-      image: 'https://images.unsplash.com/photo-1494790108755-2616c4e2fedf?w=400&h=400&fit=crop&crop=face',
+      image: '/ceo.png',
       qualifications: ['BSc Meteorology - Makerere University', 'Weather Forecaster - UNMA', 'Climate Change Communicator - UBC'],
       experience: '7+ years',
       specialization: 'Weather Forecasting, Climate Communication',
