@@ -27,9 +27,7 @@ const Header = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <div className="h-12 w-12 bg-earth-green rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-xl">🌍</span>
-            </div>
+            <img src="/smk%20logo.png" alt="SMK EcoEnviro Solutions Logo" className="h-12 w-12 rounded-full object-cover" />
             <div>
               <h1 className="font-poppins font-bold text-xl text-gray-900">SMK ECOENVIRO</h1>
               <p className="text-sm text-gray-600">SOLUTIONS LIMITED</p>
