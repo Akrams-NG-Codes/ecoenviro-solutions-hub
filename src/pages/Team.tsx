@@ -255,71 +255,9 @@ const Team = () => {
                 Meet the experts supporting our environmental consultancy services
               </p>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {teamMembers.slice(1).map((member, index) => (
-                <Card key={index} className="hover:shadow-xl transition-shadow h-full">
-                  <CardContent className="p-8">
-                    <div className="text-center mb-6">
-                      <img 
-                        src={member.image} 
-                        alt={member.name}
-                        className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
-                      />
-                      <h3 className="font-poppins text-xl font-semibold text-gray-900 mb-2">
-                        {member.name}
-                      </h3>
-                      <p className="text-earth-green font-medium mb-4">
-                        {member.position}
-                      </p>
-                    </div>
-
-                    <div className="space-y-4">
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Qualifications</h4>
-                        <ul className="text-sm text-gray-600 space-y-1">
-                          {member.qualifications.map((qual, qualIndex) => (
-                            <li key={qualIndex}>• {qual}</li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <h4 className="font-semibold text-gray-900 mb-1">Experience</h4>
-                          <p className="text-sm text-gray-600">{member.experience}</p>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-gray-900 mb-1">Specialization</h4>
-                          <p className="text-sm text-gray-600">{member.specialization}</p>
-                        </div>
-                      </div>
-
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Key Achievements</h4>
-                        <ul className="text-sm text-gray-600 space-y-1">
-                          {member.achievements.map((achievement, achIndex) => (
-                            <li key={achIndex}>• {achievement}</li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div className="pt-4 border-t space-y-2">
-                        <div className="flex items-center justify-between">
-                          <Button variant="outline" size="sm" className="flex-1 mr-2">
-                            <Mail className="h-4 w-4 mr-1" />
-                            Email
-                          </Button>
-                          <Button variant="outline" size="sm" className="flex-1 ml-2">
-                            <Linkedin className="h-4 w-4 mr-1" />
-                            LinkedIn
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+            {/* Only CEO is currently listed */}
+            <div className="text-center text-gray-600 text-lg py-12">
+              Only the CEO is currently listed.
             </div>
           </div>
         </section>
