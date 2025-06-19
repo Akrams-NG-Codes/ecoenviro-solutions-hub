@@ -141,7 +141,7 @@ const Team = () => {
                         <img
                           src={teamMembers[0].image}
                           alt={teamMembers[0].name}
-                          className="w-32 h-32 rounded-full object-cover mx-auto mb-4"
+                          className="w-full h-full object-cover"
                         />
                       </div>
                     </div>
