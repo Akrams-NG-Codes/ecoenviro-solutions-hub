@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -59,10 +58,10 @@ const NotFound = () => {
             {/* Quick Actions */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button asChild size="lg" className="bg-earth-green hover:bg-forest-green">
-                <Link to="/">
+                <a href="https://ecoenviro-solutions-hub.vercel.app/">
                   <Home className="mr-2 h-5 w-5" />
                   Go to Homepage
-                </Link>
+                </a>
               </Button>
               
               <Button asChild variant="outline" size="lg">
